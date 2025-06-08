@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Color Inverter",
+  "version": "1.0",
+  "description": "Inverts webpage colors to convert dark mode sites to light mode while preserving images and SVGs",
+  
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  "action": {
+    "default_title": "Toggle color inversion"
+  },
+
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
