@@ -7,11 +7,12 @@ A simple Chrome extension that inverts webpage colors to make dark mode websites
 
 ## Features
 
-- 🎯 **One-click toggle** - No popup or configuration needed
+- 🎯 **One-click toggle** - Toolbar icon or `Alt+I` (rebind at `chrome://extensions/shortcuts`)
 - 🖼️ **Image preservation** - Images, SVGs, and videos remain unaffected
 - 🔄 **Instant toggle** - Click once to invert, click again to revert
-- 🌐 **Universal compatibility** - Works on all accessible web pages
-- 💾 **No storage required** - Stateless operation, no data collection
+- 🌐 **Universal compatibility** - Works on all accessible web pages, including iframes
+- 🔘 **Badge indicator** - Toolbar icon shows `ON` while a site is inverted
+- 💾 **Remembers per site** - Inversion stays on for a host across reloads and tabs; only the hostname list is stored locally
 - ⚡ **Lightweight** - Minimal resource usage
 
 ## Installation
@@ -39,16 +40,27 @@ A simple Chrome extension that inverts webpage colors to make dark mode websites
 2. **Click the Color Inverter icon** in your Chrome toolbar
 3. **Colors will invert instantly** - dark backgrounds become light
 4. **Click again to revert** to original colors
-5. **No configuration needed** - it just works!
+5. **It sticks** - the site stays inverted after reload and in new tabs until you toggle it off
+
+### Keyboard Shortcut
+
+Press **`Alt+I`** (`Option+I` on macOS) to toggle inversion on the current site without touching the toolbar.
+
+To change the shortcut:
+
+1. Open `chrome://extensions/shortcuts`
+2. Find **Color Inverter** → "Toggle color inversion"
+3. Click the input field and press your preferred key combination
+
+The shortcut can also be set to work globally (outside Chrome) from the same page via the dropdown next to it.
 
 ## How It Works
 
 The extension uses CSS filters to invert colors across the entire webpage:
 
 - **Main inversion**: Applies `filter: invert(1) hue-rotate(180deg)` to the HTML element
-- **Image preservation**: Counter-inverts images, SVGs, and videos to maintain original appearance
-- **Background image handling**: Detects and preserves CSS background images
-- **Toggle mechanism**: Dynamically adds/removes CSS styles
+- **Media preservation**: Counter-inverts `img`, `svg`, `video`, `canvas`, `embed`, `object`, `iframe`
+- **Persistence**: Toggling adds/removes the hostname in `chrome.storage.local`; the content script applies the style on load and reacts to storage changes
 
 ## License
 
